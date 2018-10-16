@@ -121,6 +121,6 @@ public class PegawaiController {
 		System.out.println(pegawai.toString());
 		pegawaiService.addPegawai(pegawai);
 		model.addAttribute("nip", nip);
-		return "add";
+		return "addPegawai-success";
 	}
 }
