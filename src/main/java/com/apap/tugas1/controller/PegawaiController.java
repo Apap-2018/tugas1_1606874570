@@ -44,6 +44,8 @@ public class PegawaiController {
 	
 	@RequestMapping("/")
 	private String home(Model model) {
+		List<JabatanModel> daftarJabatan = jabatanService.findAllJabatan();
+		model.addAttribute("listOfJabatan", daftarJabatan);
 		return "HomePage";
 	}
 	

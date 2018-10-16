@@ -9,7 +9,7 @@
 </head>
 
 <body>
-	<nav th:replace="fragments/fragment :: navbar (pageTitle='SIPEG')"></nav>
+	<nav th:replace="fragments/fragment :: navbar "></nav>
 	<div class="container-fluid">
 	<h2>Sistem Informasi Kepegawaian</h2>
 	<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
@@ -30,6 +30,29 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-md-6">
+			<div class="card">
+				<div class="card-header">
+					<h2>Lihat Detail Jabatan</h2>
+				</div>
+				<form th:action="@{/jabatan}" method="GET">
+					<div class="card-body">
+						<label class="control-label col-sm-2" for="idJabatan">Pilih Jabatan</label>
+							<div class="col-sm-10">
+								<select name="jabatan">
+									<option th:each="jabatan : ${listOfJabatan}" th:value="${jabatan.id}" th:text="${jabatan.nama}" name="jabatan">
+									</option>
+								</select>
+							</div>
+						<button type="submit" class="btn btn-primary">Lihat</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 	</div>
 </body>
 </html>	
