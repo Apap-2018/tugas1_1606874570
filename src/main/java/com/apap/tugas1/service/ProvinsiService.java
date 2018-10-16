@@ -6,6 +6,6 @@ import java.util.Optional;
 import com.apap.tugas1.model.ProvinsiModel;
 
 public interface ProvinsiService {
-	Optional<ProvinsiModel> getProvinsiDetailById(int id);
+	ProvinsiModel getProvinsiDetailById(int id);
 	List<ProvinsiModel> findAllProvinsi();
 }

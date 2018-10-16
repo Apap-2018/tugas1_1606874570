@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JabatanDb extends JpaRepository<JabatanModel,Long>{
-
+	JabatanModel findJabatanById(long id);
 }

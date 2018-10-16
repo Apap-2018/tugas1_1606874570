@@ -2,6 +2,10 @@ package com.apap.tugas1.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -108,6 +112,7 @@ public class PegawaiModel {
 		}
 	};
 
+	
 	public long getId() {
 		return id;
 	}
@@ -144,6 +149,22 @@ public class PegawaiModel {
 		return tanggalLahir;
 	}
 
+	public String getTanggalLahirStr() {
+		DateFormat dateFormat = new SimpleDateFormat("ddMMyy");
+		String tglLahir = dateFormat.format(tanggalLahir);
+		DateFormat aa = new SimpleDateFormat("yyyy");
+		String bb = aa.format(tanggalLahir);
+		System.out.println("INI : " + bb);
+		return tglLahir;
+	}
+	
+	public String getTahunLahir() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy");
+		String tahunLahir = dateFormat.format(tanggalLahir);
+		return tahunLahir;
+	}
+	
+	
 	public void setTanggalLahir(Date tanggalLahir) {
 		this.tanggalLahir = tanggalLahir;
 	}
@@ -180,4 +201,11 @@ public class PegawaiModel {
 		PegawaiModel.pegComp = pegComp;
 	}
 
+	@Override
+	public String toString() {
+		return "PegawaiModel [id=" + id + ", nip=" + nip + ", nama=" + nama + ", tempatLahir=" + tempatLahir
+				+ ", tanggalLahir=" + tanggalLahir + ", tahunMasuk=" + tahunMasuk + ", instansi=" + instansi
+				+ ", jabatanList=" + jabatanList + "]";
+	}
+	
 }

@@ -19,7 +19,7 @@ public class ProvinsiServiceImpl implements ProvinsiService{
 	private ProvinsiDb prov;
 
 	@Override
-	public Optional<ProvinsiModel> getProvinsiDetailById(int id) {
+	public ProvinsiModel getProvinsiDetailById(int id) {
 		return prov.findById(id);
 	}
 
