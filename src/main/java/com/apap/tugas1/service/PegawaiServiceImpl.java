@@ -71,4 +71,45 @@ public class PegawaiServiceImpl implements PegawaiService{
 		}
 	}
 
+	@Override
+	public void updatePegawai(String nip, PegawaiModel pegawai) {
+		PegawaiModel oldPegawai = this.getPegawaiByNip(nip);
+		oldPegawai.setInstansi(pegawai.getInstansi());
+		oldPegawai.setNama(pegawai.getNama());
+		oldPegawai.setNip(pegawai.getNip());
+		oldPegawai.setTahunMasuk(pegawai.getTahunMasuk());
+		oldPegawai.setTanggalLahir(pegawai.getTanggalLahir());
+		oldPegawai.setTempatLahir(pegawai.getTempatLahir());
+		oldPegawai.setJabatanList(pegawai.getJabatanList());
+	}
+
+	@Override
+	public void deleteJabatanList(List<JabatanModel> listJabatan, Long id) {
+		Iterator<JabatanModel> i = listJabatan.iterator();
+		while (i.hasNext()) {
+			JabatanModel jabatan = i.next();
+			if(jabatan.getId() == id) {
+				i.remove();
+			} 
+		}
+	}
+
+	@Override
+	public List<PegawaiModel> findByInstansi(InstansiModel instansi) {
+		List<PegawaiModel> listPegawai = pegawaiDb.findAllByInstansi(instansi);
+		return listPegawai;
+	}
+	
+	@Override
+	public int findJabatanList(List<JabatanModel> listJabatan, Long id) {
+		int ret = 0;
+		Iterator<JabatanModel> i = listJabatan.iterator();
+		while (i.hasNext()) {
+			JabatanModel jabatan = i.next();
+			if(jabatan.getId() == id) {
+				ret++;
+			} 
+		}
+		return ret;
+	}
 }

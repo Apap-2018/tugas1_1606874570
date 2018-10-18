@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.data.repository.query.Param;
 
 import com.apap.tugas1.model.InstansiModel;
+import com.apap.tugas1.model.JabatanModel;
 import com.apap.tugas1.model.PegawaiModel;
 
 
@@ -17,4 +18,8 @@ public interface PegawaiService {
 	PegawaiModel getPegawaiByNip(String nip);
 	List<PegawaiModel> findByTahunMasukAndInstansi(String tahunMasuk, InstansiModel instansi );
 	void deleteListElement(List<PegawaiModel> listPegawai, int tahunLahir);
+	void updatePegawai(String nip, PegawaiModel pegawai);
+	void deleteJabatanList(List<JabatanModel> listJabatan, Long id);
+	List<PegawaiModel> findByInstansi(InstansiModel instansi);
+	int findJabatanList(List<JabatanModel> listJabatan, Long id);
 }

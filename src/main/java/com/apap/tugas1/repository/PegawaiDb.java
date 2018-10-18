@@ -18,4 +18,6 @@ import org.springframework.stereotype.Repository;
 public interface PegawaiDb extends JpaRepository<PegawaiModel,Long> {
 	PegawaiModel findByNip(String nip);
 	List<PegawaiModel> findByTahunMasukAndInstansi(@Param("tahun_masuk") String tahunMasuk, InstansiModel instansi );
+	List<PegawaiModel> findByInstansi(InstansiModel instansi);
+	List<PegawaiModel> findAllByInstansi(InstansiModel instansi);
 }

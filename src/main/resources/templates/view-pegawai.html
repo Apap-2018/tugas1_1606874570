@@ -55,9 +55,9 @@
                     </tr>
 				</tbody>
 			</table>
-			<div class="card-body">
-                <a th:href="@{/}" class="btn btn-primary">Ubah</a>
-            </div>
+			<form th:action="@{/pegawai/ubah/} + ${pegawai.getNip()}">
+				<button value="submit">Ubah</button>
+			</form>
 		</div>
 	</div>
 </body>

@@ -30,8 +30,8 @@
 				</tbody>
 			</table>
 			<div class="card-body">
-                <a th:href="@{/}" class="btn btn-primary">Ubah</a>
-                <a th:href="@{/}" class="btn btn-primary">Hapus</a>
+				<a th:href="@{/jabatan/ubah/} + ${jabatan.getId()}" class="btn btn-primary">Ubah</a>
+                <a th:href="@{/jabatan/hapus/} + ${jabatan.getId()}" class="btn btn-primary">Hapus</a>
             </div>
 		</div>
 	</div>

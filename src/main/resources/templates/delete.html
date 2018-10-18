@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-	<title>Tambah Pegawai</title>
+	<title>Hapus Jabatan</title>
 	
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -11,5 +11,5 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<h1>Sukses!</h1>
-	<h2 th:text="'Pegawai dengan NIP ' + ${nip} + ' berhasil ditambahkan.'"></h2>
+	<h2 th:text="'Jabatan ' + ${nama} + ' berhasil dihapus.'"></h2>
 </body>

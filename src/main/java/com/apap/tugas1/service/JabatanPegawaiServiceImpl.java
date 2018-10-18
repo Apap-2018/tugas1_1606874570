@@ -1,5 +1,6 @@
 package com.apap.tugas1.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -38,5 +39,6 @@ public class JabatanPegawaiServiceImpl implements JabatanPegawaiService{
 	public Optional<JabatanPegawaiModel> getJabatanPegawaiDetailById(Long id) {
 		return jabPegDb.findById(id);
 	}
+
 
 }
