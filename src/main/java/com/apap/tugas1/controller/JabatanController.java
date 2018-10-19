@@ -39,6 +39,8 @@ public class JabatanController {
 	private String findJabatan(@RequestParam("jabatan") Long id, Model model) {
 		JabatanModel jabatan = jabatanService.getJabatanDetailById(id);
 		if (jabatan!=null ) {
+			int jmlPegawai = jabatan.getPegawaiList().size();
+			model.addAttribute("jmlPegawai", jmlPegawai);
 			model.addAttribute("jabatan", jabatan);
 			return "view-jabatan";
 		}
@@ -65,6 +67,7 @@ public class JabatanController {
 		model.addAttribute("jabatan", jabatan);
 		model.addAttribute("newJabatan", new JabatanModel());
 	    
+		
 		return "updateJabatan";
 	}
 

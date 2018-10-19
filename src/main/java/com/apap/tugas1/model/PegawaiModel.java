@@ -77,7 +77,6 @@ public class PegawaiModel {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             })
-	@JoinColumn(name = "id_jabatan", referencedColumnName = "id", nullable = false)
     @JoinTable(name = "jabatan_pegawai",
 	   joinColumns = { @JoinColumn(name="id_pegawai", referencedColumnName="id") },
 	   inverseJoinColumns = { @JoinColumn(name="id_jabatan", referencedColumnName="id") }) 
