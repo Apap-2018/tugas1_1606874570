@@ -84,15 +84,11 @@ public class JabatanController {
         List<PegawaiModel> listPegawai = jabatan.getPegawaiList();
         if(listPegawai.isEmpty()) {
         	jabatanService.deleteJabatan(jabatan);
-        }
-        else {
-        	for(PegawaiModel peg : listPegawai) {
-        		pegawaiService.deleteJabatanList(peg.getJabatanList(), Long.parseLong(id_jabatan));
-        	}
-        	jabatanService.deleteJabatan(jabatan);
+        	model.addAttribute("nama", jabatan.getNama());
+        	return "delete";
         }
         model.addAttribute("nama", jabatan.getNama());
-        return "delete";
+        return "cannot-delete";
     }
 	
 	@RequestMapping(value = "/jabatan/viewall", method = RequestMethod.GET)

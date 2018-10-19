@@ -57,6 +57,7 @@ public class JabatanModel {
 			mappedBy = "jabatanList")
 		private List<PegawaiModel> pegawaiList;
 
+
 	public long getId() {
 		return id;
 	}

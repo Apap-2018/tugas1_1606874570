@@ -77,6 +77,7 @@ public class PegawaiModel {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
             })
+	@JoinColumn(name = "id_jabatan", referencedColumnName = "id", nullable = false)
     @JoinTable(name = "jabatan_pegawai",
 	   joinColumns = { @JoinColumn(name="id_pegawai", referencedColumnName="id") },
 	   inverseJoinColumns = { @JoinColumn(name="id_jabatan", referencedColumnName="id") }) 
@@ -152,9 +153,6 @@ public class PegawaiModel {
 	public String getTanggalLahirStr() {
 		DateFormat dateFormat = new SimpleDateFormat("ddMMyy");
 		String tglLahir = dateFormat.format(tanggalLahir);
-		DateFormat aa = new SimpleDateFormat("yyyy");
-		String bb = aa.format(tanggalLahir);
-		System.out.println("INI : " + bb);
 		return tglLahir;
 	}
 	

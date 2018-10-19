@@ -19,7 +19,7 @@ public interface PegawaiService {
 	List<PegawaiModel> findByTahunMasukAndInstansi(String tahunMasuk, InstansiModel instansi );
 	void deleteListElement(List<PegawaiModel> listPegawai, int tahunLahir);
 	void updatePegawai(String nip, PegawaiModel pegawai);
-	void deleteJabatanList(List<JabatanModel> listJabatan, Long id);
 	List<PegawaiModel> findByInstansi(InstansiModel instansi);
 	int findJabatanList(List<JabatanModel> listJabatan, Long id);
+	List<PegawaiModel> getFilter(String idInstansi, String idJabatan);
 }

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * PilotController
+ * PegawaiController
  * @author debora
  */
 
@@ -46,7 +46,9 @@ public class PegawaiController {
 	@RequestMapping("/")
 	private String home(Model model) {
 		List<JabatanModel> daftarJabatan = jabatanService.findAllJabatan();
+		List<InstansiModel> daftarInstansi = instansiService.findAllInstansi();
 		model.addAttribute("listOfJabatan", daftarJabatan);
+		model.addAttribute("listOfInstansi", daftarInstansi);
 		return "HomePage";
 	}
 	
@@ -111,7 +113,7 @@ public class PegawaiController {
 		//jika ada pegawai lain dengan instansi dan tahun masuk yang sama//
 		else {
 			//list pegawai akan ditrace dan buang pegawai dengan tahun lahir yang tidak sama dari list pegawai//
-			pegawaiService.deleteListElement(anotherPegawai, Integer.parseInt(pegawai.getTahunLahir()));
+			pegawaiService.deleteListElement(anotherPegawai, Integer.parseInt(pegawai.getTanggalLahirStr()));
 			//mengurutkan pegawai dengan tahun lahir yang sama berdasarkan nip, secara descending//
 			anotherPegawai.sort(new Comparator<PegawaiModel>() {
 			    @Override
@@ -228,22 +230,54 @@ public class PegawaiController {
 	@RequestMapping(value = "/pegawai/cari", params = {"cari"}, method = RequestMethod.POST)
 	private String findPegawaiCari(@ModelAttribute PegawaiModel newPegawai, @RequestParam("instansi") String idInstansi, @RequestParam("provinsi") String idProvinsi, 
 			@RequestParam("jabatan") String idJabatan, Model model) {
-		System.out.println("aaa");
 		InstansiModel instansi = instansiService.findById(Long.parseLong(idInstansi));
-		List<PegawaiModel> listPegawai_tmp = pegawaiService.findByInstansi(instansi);
-		List<PegawaiModel> listPegawai = new ArrayList<PegawaiModel>();
-		for(PegawaiModel pegawai : listPegawai_tmp) {
-			if(pegawaiService.findJabatanList(pegawai.getJabatanList(), Long.parseLong(idJabatan)) > 0){
-				listPegawai.add(pegawai);
-			}
-			else {
-				return "not-found";
-			}
-		}
-		model.addAttribute("listPegawai" , listPegawai);
-		model.addAttribute("namaJabatan" , jabatanService.getJabatanDetailById(Long.parseLong(idJabatan)));
+		JabatanModel jabatan = jabatanService.getJabatanDetailById(Long.parseLong(idJabatan));
+		List<PegawaiModel> listPegawai = pegawaiService.getFilter(idInstansi, idJabatan);
+		System.out.println(listPegawai);
+		model.addAttribute("nama", instansi.getNama());
+		model.addAttribute("namaJabatan", jabatan.getNama());
+	    model.addAttribute("listPegawai", listPegawai);
+	    
+	    List<ProvinsiModel> daftarProv = provinsiService.findAllProvinsi();
+		List<JabatanModel> daftarJabatan = jabatanService.findAllJabatan();
+		List<InstansiModel> daftarInstansi = instansiService.findAllInstansi();
+		
+	    model.addAttribute("listOfProvinsi", daftarProv);
+	    model.addAttribute("listOfJabatan", daftarJabatan);
+	    model.addAttribute("listOfInstansi", daftarInstansi);
+	    
 		return "cari-pegawai";
 	}
 	
+	@RequestMapping(value = "/pegawai/termuda-tertua/", method = RequestMethod.GET)
+	private String mudatua(@RequestParam("instansi") Long id, @ModelAttribute PegawaiModel newPegawai, Model model) {
+		InstansiModel instansi = instansiService.findById(id);
+		List<PegawaiModel> listPegawai = instansi.getPegawaiInstansi();
+		listPegawai.sort(new Comparator<PegawaiModel>() {
+		    @Override
+		    public int compare(PegawaiModel m1, PegawaiModel m2) {
+		    	return m2.getTanggalLahir().compareTo(m1.getTanggalLahir());
+		     }
+		});
+		PegawaiModel pegawaiTertua = listPegawai.get(0);
+		String namaInstansiTertua = pegawaiTertua.getInstansi().getNama();
+		String namaProvinsiTertua = pegawaiTertua.getInstansi().getProvinsi().getNama();
+		List<JabatanModel> listJabatanTertua = pegawaiTertua.getJabatanList();  
+		model.addAttribute("pegawaiTertua",pegawaiTertua);
+		model.addAttribute("namaInstansiTertua",namaInstansiTertua);
+		model.addAttribute("namaProvinsiTertua",namaProvinsiTertua);
+		model.addAttribute("listJabatanTertua",listJabatanTertua);
+		
+		PegawaiModel pegawaiTermuda = listPegawai.get(listPegawai.size()-1);
+		String namaInstansiTermuda = pegawaiTermuda.getInstansi().getNama();
+		String namaProvinsiTermuda = pegawaiTermuda.getInstansi().getProvinsi().getNama();
+		List<JabatanModel> listJabatanTermuda = pegawaiTermuda.getJabatanList();
+		model.addAttribute("pegawaiTermuda",pegawaiTermuda);
+		model.addAttribute("namaInstansiTermuda",namaInstansiTermuda);
+		model.addAttribute("namaProvinsiTermuda",namaProvinsiTermuda);
+		model.addAttribute("listJabatanTermuda",listJabatanTermuda);
+		
+		return "tua-muda";
+	}
 	
 }
