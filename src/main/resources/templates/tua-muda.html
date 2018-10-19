@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-	<title>Hapus Jabatan</title>
+	<title>Data Pegawai</title>
 	
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -11,81 +11,93 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar"></nav>
 	<div class="container-fluid">
-		
+		<h1>Data Pegawai Tertua dan Termuda</h1>
 		<div class="row">
-			<div class="col">
-				<h2>Data Pegawai Tertua</h2>
-				<table>
-					<tbody>
-						<tr>
-							<td scope="row">NIP</td>
-							<td th:value="${pegawaiTertua.getNip()}" th:text="${pegawaiTertua.getNip()}"></td>
-						</tr>
-						<tr>
-							<td scope="row">Nama</td>
-							<td th:value="${pegawaiTertua.getNama()}" th:text="${pegawaiTertua.getNama()}"></td>
-						</tr>
-						<tr>
-							<td scope="row">Tempat Lahir</td>
-							<td th:value="${pegawaiTertua.getTempatLahir()}" th:text="${pegawaiTertua.getTempatLahir()}"></td>
-						</tr>
-						<tr>
-							<td scope="row">Tanggal Lahir</td>
-							<td th:value="${pegawaiTertua.getTanggalLahir()}" th:text="${pegawaiTertua.getTanggalLahir()}"></td>
-						</tr>
-						<tr>
-							<td scope="row">Tahun Masuk</td>
-							<td th:value="${pegawaiTertua.getTahunMasuk()}" th:text="${pegawaiTertua.getTahunMasuk()}"></td>
-						</tr>
-						<tr>
-							<td scope="row">Nama Instansi</td>
-							<td th:text="${namaInstansiTertua} + ' - ' + ${namaProvinsiTertua}"></td>
-						</tr>
-						<tr th:each="jabatan : ${listJabatanTertua}">
-							<td scope="row">Jabatan</td>
-							<td th:value="${jabatan.getNama()}" th:text="${jabatan.getNama()}"></td>
-						</tr>
-					</tbody>
-				</table>
+		<div class="col-md-6 mb-2 mt-3">
+			<div class="card">
+				<div class="card-header">
+					<h2>Data Pegawai Tertua</h2>
+				</div>
+				<div class="card-body">
+					<div class="row" name="rowNIP">
+						<div class="col">NIP</div>
+						<div class="col" th:value="${pegawaiTertua.getNip()}" th:text="${pegawaiTertua.getNip()}"></div>
+					</div>
+					<div class="row" name="rowNama">
+						<div class="col">Nama</div>
+						<div class="col" th:value="${pegawaiTertua.getNama()}" th:text="${pegawaiTertua.getNama()}"></div>
+					</div>
+					<div class="row" name="rowTempatLahir">
+						<div class="col">Tempat Lahir</div>
+						<div class="col" th:value="${pegawaiTertua.getTempatLahir()}" th:text="${pegawaiTertua.getTempatLahir()}"></div>
+					</div>
+					<div class="row" name="rowTanggalLahir">
+						<div class="col">Tanggal Lahir</div>
+						<div class="col" th:value="${pegawaiTertua.getTanggalLahir()}" th:text="${pegawaiTertua.getTanggalLahir()}"></div>
+					</div>
+					<div class="row" name="rowTahunMasuk">
+						<div class="col">Tahun Masuk</div>
+						<div class="col" th:value="${pegawaiTertua.getTahunMasuk()}" th:text="${pegawaiTertua.getTahunMasuk()}"></div>
+					</div>
+					<div class="row" name="rowInstansi">
+						<div class="col">Nama Instansi</div>
+						<div class="col" th:text="${namaInstansiTertua} + ' - ' + ${namaProvinsiTertua}"></div>
+					</div>
+					<div class="row" name="rowJabatan">
+						<div class="col">Jabatan</div>
+						<div class="col">
+							<ul	th:each="jabatan : ${listJabatanTertua}">
+								<li th:value="${jabatan.getNama()}" th:text="${jabatan.getNama()}"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="row">
-			<div class="col">
-			<h2>Data Pegawai Termuda</h2>
-			<table>
-				<tbody>
-					<tr>
-						<td scope="row">NIP</td>
-						<td th:value="${pegawaiTermuda.getNip()}" th:text="${pegawaiTermuda.getNip()}"></td>
-					</tr>
-					<tr>
-						<td scope="row">Nama</td>
-						<td th:value="${pegawaiTermuda.getNama()}" th:text="${pegawaiTermuda.getNama()}"></td>
-					</tr>
-					<tr>
-						<td scope="row">Tempat Lahir</td>
-						<td th:value="${pegawaiTermuda.getTempatLahir()}" th:text="${pegawaiTermuda.getTempatLahir()}"></td>
-					</tr>
-					<tr>
-						<td scope="row">Tanggal Lahir</td>
-						<td th:value="${pegawaiTermuda.getTanggalLahir()}" th:text="${pegawaiTermuda.getTanggalLahir()}"></td>
-					</tr>
-					<tr>
-						<td scope="row">Tahun Masuk</td>
-						<td th:value="${pegawaiTermuda.getTahunMasuk()}" th:text="${pegawaiTermuda.getTahunMasuk()}"></td>
-					</tr>
-					<tr>
-						<td scope="row">Nama Instansi</td>
-						<td th:text="${namaInstansiTermuda} + ' - ' + ${namaProvinsiTermuda}"></td>
-					</tr>
-					<tr th:each="jabatan : ${listJabatanTermuda}">
-						<td scope="row">Jabatan</td>
-						<td th:value="${jabatan.getNama()}" th:text="${jabatan.getNama()}"></td>
-					</tr>
-				</tbody>
-			</table>
+		</div>
+		
+		<div class="row">
+		<div class="col-md-6 mb-2 mt-3">
+			<div class="card">
+				<div class="card-header">
+					<h2>Data Pegawai Tertua</h2>
+				</div>
+				<div class="card-body">
+					<div class="row" name="rowNIP">
+						<div class="col">NIP</div>
+						<div class="col" th:value="${pegawaiTermuda.getNip()}" th:text="${pegawaiTermuda.getNip()}"></div>
+					</div>
+					<div class="row" name="rowNama">
+						<div class="col">Nama</div>
+						<div class="col" th:value="${pegawaiTermuda.getNama()}" th:text="${pegawaiTermuda.getNama()}"></div>
+					</div>
+					<div class="row" name="rowTempatLahir">
+						<div class="col">Tempat Lahir</div>
+						<div class="col" th:value="${pegawaiTermuda.getTempatLahir()}" th:text="${pegawaiTermuda.getTempatLahir()}"></div>
+					</div>
+					<div class="row" name="rowTanggalLahir">
+						<div class="col">Tanggal Lahir</div>
+						<div class="col" th:value="${pegawaiTermuda.getTanggalLahir()}" th:text="${pegawaiTermuda.getTanggalLahir()}"></div>
+					</div>
+					<div class="row" name="rowTahunMasuk">
+						<div class="col">Tahun Masuk</div>
+						<div class="col" th:value="${pegawaiTermuda.getTahunMasuk()}" th:text="${pegawaiTermuda.getTahunMasuk()}"></div>
+					</div>
+					<div class="row" name="rowInstansi">
+						<div class="col">Nama Instansi</div>
+						<div class="col" th:text="${namaInstansiTermuda} + ' - ' + ${namaProvinsiTermuda}"></div>
+					</div>
+					<div class="row" name="rowJabatan">
+						<div class="col">Jabatan</div>
+						<div class="col">
+							<ul	th:each="jabatan : ${listJabatanTermuda}">
+								<li th:value="${jabatan.getNama()}" th:text="${jabatan.getNama()}"></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		</div>
 	</div>
 </body>

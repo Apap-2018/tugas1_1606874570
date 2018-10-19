@@ -6,20 +6,26 @@
 	
 	<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 	<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	<style type="text/css">
+		.card-deck{
+		bottom-margin: 10px;
+		}
+	</style>
 </head>
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar "></nav>
 	<div class="container-fluid">
-	<h2>Sistem Informasi Kepegawaian</h2>
+	<h1>Sistem Informasi Kepegawaian</h1>
 	<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 mb-2 mt-3">
 			<div class="card">
 				<div class="card-header">
-					<h2>Lihat Data Pegawai berdasarkan NIP</h2>
+					<h3>Lihat Data Pegawai berdasarkan NIP</h3>
 				</div>
-				<form th:action="@{/pegawai}" method="GET">
+				<div class="card-body">
+					<form th:action="@{/pegawai}" method="GET">
 					<div class="card-body">
 						<label for="nip">Masukkan Nomor Induk Pegawai</label>
 						<input type="text" name="nip" class="form-control" />
@@ -27,18 +33,19 @@
 						<button type="submit" class="btn btn-primary">Cari</button>
 					</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-md-6">
-			<div class="card">
+		<div class="col-md-6 mb-2">
+			<div class="card" >
 				<div class="card-header">
 					<h2>Lihat Detail Jabatan</h2>
 				</div>
+				<div class="card-body">
 				<form th:action="@{/jabatan}" method="GET">
-					<div class="card-body">
 						<label class="control-label col-sm-2" for="idJabatan">Pilih Jabatan</label>
 							<div class="col-sm-10">
 								<select name="jabatan">
@@ -46,9 +53,11 @@
 									</option>
 								</select>
 							</div>
-						<button type="submit" class="btn btn-primary">Lihat</button>
-					</div>
+							<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary my-3">Lihat</button>
+							</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -59,18 +68,20 @@
 				<div class="card-header">
 					<h2>Lihat Pegawai Tertua Termuda</h2>
 				</div>
-				<form th:action="@{/pegawai/termuda-tertua/}" method="GET">
-					<div class="card-body">
+				<div class="card-body">
+				<form th:action="@{/pegawai/termuda-tertua/}" method="GET" >
 						<label class="control-label col-sm-2" for="idJabatan">Pilih Instansi</label>
-							<div class="col-sm-10">
-								<select name="instansi">
-									<option th:each="instansi : ${listOfInstansi}" th:value="${instansi.id}" th:text="${instansi.nama}" name="instansi">
-									</option>
-								</select>
-							</div>
-						<button type="submit" class="btn btn-primary">Lihat</button>
-					</div>
+						<div class="col-sm-10">
+							<select name="instansi">
+								<option th:each="instansi : ${listOfInstansi}" th:value="${instansi.id}" th:text="${instansi.nama} + ' - ' + ${instansi.provinsi.nama}" name="instansi">
+								</option>
+							</select>
+						</div>
+						<div class="col-sm-10">
+						<button type="submit" class="btn btn-primary my-3">Lihat</button>
+						</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -11,32 +11,40 @@
 <body>
 	<nav th:replace="fragments/fragment :: navbar "></nav>
 	<div id="Content" class="container-full-bg">
-	<h1 th:text="'Detail Jabatan ' + ${jabatan.getNama()}"></h1>
-		<div class="card my-5">
-			<table class="table">
-				<tbody>
-					<tr>
-						<th scope="row">Nama:</th>
-						<td th:text="${jabatan.getNama()}"></td>
-					</tr>
-					<tr>
-						<th scope="row">Deskripsi:</th>
-						<td th:text="${jabatan.getDeskripsi()}"></td>
-					</tr>
-					<tr>
-						<th scope="row">Gaji Pokok:</th>
-						<td th:text="${jabatan.getGajiPokok()}"></td>
-					</tr>
-					<tr>
-						<th scope="row">Jumlah Pegawai</th>
-						<td th:text="${jmlPegawai}"></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="card-body">
-				<a th:href="@{/jabatan/ubah/} + ${jabatan.getId()}" class="btn btn-primary">Ubah</a>
-                <a th:href="@{/jabatan/hapus/} + ${jabatan.getId()}" class="btn btn-primary">Hapus</a>
-            </div>
+	<h1 class="ml-3" th:text="'Detail Jabatan ' + ${jabatan.getNama()}"></h1>
+		<div class="row">
+		<div class="col-md-6 mb-2 mt-3 ml-3">
+			<div class="card">
+				<div class="card-header">
+					<h3 th:text="${jabatan.getNama()}">Informasi Jabatan</h3>
+				</div>
+				<div class="card-body">
+					<div class="row" name="rowNama">
+						<div class="col">Nama: </div>
+						<div class="col" th:text="${jabatan.getNama()}"></div>
+					</div>
+					<div class="row" name="rowDeskripsi">
+						<div class="col">Deskripsi: </div>
+						<div class="col" th:text="${jabatan.getDeskripsi()}"></div>
+					</div>
+					<div class="row" name="rowGajiPokok">
+						<div class="col">Gaji Pokok: </div>
+						<div class="col" th:text="${jabatan.getGajiPokok()}"></div>
+					</div>
+					<div class="row" name="rowJmlPegawai">
+						<div class="col">Jumlah Pegawai</div>
+						<div class="col" th:text="${jmlPegawai}"></div>
+					</div>
+					<div align="center">
+						<a th:href="@{/jabatan/ubah/} + ${jabatan.getId()}" class="btn btn-primary mt-4">Ubah</a>
+						<a th:href="@{/jabatan/hapus/} + ${jabatan.getId()}" class="btn btn-primary mt-4">Hapus</a>
+					</div>
+							
+					
+				</div>
+				
+			</div>
+		</div>
 		</div>
 	</div>
 </body>
