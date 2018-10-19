@@ -259,7 +259,7 @@ public class PegawaiController {
 		    	return m2.getTanggalLahir().compareTo(m1.getTanggalLahir());
 		     }
 		});
-		PegawaiModel pegawaiTertua = listPegawai.get(0);
+		PegawaiModel pegawaiTertua = listPegawai.get(listPegawai.size()-1);
 		String namaInstansiTertua = pegawaiTertua.getInstansi().getNama();
 		String namaProvinsiTertua = pegawaiTertua.getInstansi().getProvinsi().getNama();
 		List<JabatanModel> listJabatanTertua = pegawaiTertua.getJabatanList();  
@@ -268,7 +268,7 @@ public class PegawaiController {
 		model.addAttribute("namaProvinsiTertua",namaProvinsiTertua);
 		model.addAttribute("listJabatanTertua",listJabatanTertua);
 		
-		PegawaiModel pegawaiTermuda = listPegawai.get(listPegawai.size()-1);
+		PegawaiModel pegawaiTermuda = listPegawai.get(0);
 		String namaInstansiTermuda = pegawaiTermuda.getInstansi().getNama();
 		String namaProvinsiTermuda = pegawaiTermuda.getInstansi().getProvinsi().getNama();
 		List<JabatanModel> listJabatanTermuda = pegawaiTermuda.getJabatanList();

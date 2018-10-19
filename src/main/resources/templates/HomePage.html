@@ -11,17 +11,20 @@
 		bottom-margin: 10px;
 		}
 	</style>
+	
+	<link href="https://fonts.googleapis.com/css?family=Krub" rel="stylesheet">
+	
 </head>
 
 <body>
 	<nav th:replace="fragments/fragment :: navbar "></nav>
 	<div class="container-fluid">
-	<h1>Sistem Informasi Kepegawaian</h1>
-	<h3>Selamat datang di Sistem Informasi Kepegawaian</h3>
+	<h1 style="font-family: 'Krub', sans-serif;">Sistem Informasi Kepegawaian</h1>
+	<h4 style="font-family: 'Krub', sans-serif;">Selamat datang di Sistem Informasi Kepegawaian</h4>
 	<div class="row">
 		<div class="col-md-6 mb-2 mt-3">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-dark" style="background-color: #cccccc;">
 					<h3>Lihat Data Pegawai berdasarkan NIP</h3>
 				</div>
 				<div class="card-body">
@@ -41,7 +44,7 @@
 	<div class="row">
 		<div class="col-md-6 mb-2">
 			<div class="card" >
-				<div class="card-header">
+				<div class="card-header text-dark" style="background-color: #cccccc;">
 					<h2>Lihat Detail Jabatan</h2>
 				</div>
 				<div class="card-body">
@@ -65,7 +68,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="card">
-				<div class="card-header">
+				<div class="card-header text-dark" style="background-color: #cccccc;">
 					<h2>Lihat Pegawai Tertua Termuda</h2>
 				</div>
 				<div class="card-body">
